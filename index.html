@@ -20,6 +20,7 @@
 				<li>工作（30分）：工作日做“正事”≥8小时，“闲事”≤2小时。每超额5分钟扣除1%，扣完为止。</li>
 				<li>锻炼（20分）：近7天锻炼次数≥4次，每次≥30分钟。每少一次扣除25%，扣完为止。</li>
 				<li>收支（20分）：每天饮食消费≤40元，每超出1元扣除1%，最多扣除50%。每周总消费≤300元（周日结算），每超出5元，下周每一天的该项得分都额外扣除1%，最多扣除50%。</li>
+				<li>当日数据须在48小时内提交，否则视为0分。</li>
 			</ol>
 			<p style="font-weight: bold; font-size: 1.2em">
 				<a href="about.html">About me and this site</a>
@@ -32,12 +33,32 @@
 		<div id="section">
 			<table class="imagetable">
 				<tr>
-					<th>日期</th><th>起床</th><th>上床</th><th>正事</th><th>闲事</th><th>锻炼</th><th>饮食消费</th><th>上周消费</th><th>作息/%</th><th>工作/%</th><th>锻炼/%</th><th>收支/%</th><th>总分</th>
+					<th>日期</th><th>起床</th><th>入睡</th><th>正事</th><th>闲事</th><th>锻炼</th><th>饮食消费</th><th>上周消费</th><th>作息/%</th><th>工作/%</th><th>锻炼/%</th><th>收支/%</th><th>总分</th>
 				</tr>
 				<tr>
 					<td>2018-04-21</td><td>12:00</td><td>03:00</td><td>03:00</td><td>03:00</td><td>0</td><td>200</td><td>1000</td><td>99</td><td>99</td><td>99</td><td>99</td><td>99</td>
 				</tr>
 			</table>
+		</div>
+		
+		<div id="section">
+			<form action="form_add.php" method="post">
+				<ul>
+					<li>这是<select name="pasttime"><option value="0">今天</option><option value="1">昨天</option><option value="2">前天</option></select>的数据。</li>
+					
+					<li>我 <input type="text" name="wake_hour" size="2" maxlength="2"> 时 <input type="text" name="wake_minute" size="2" maxlength="2"> 分起床，<input type="text" name="sleep_hour" size="2" maxlength="2"> 时 <input type="text" name="sleep_minute" size="2" maxlength="2"> 分入睡。</li>
+
+					<li>用了 <input type="text" name="good_hour" size="2" maxlength="2"> 小时 <input type="text" name="good_minute" size="2" maxlength="2"> 分钟做“正事”，又用了<input type="text" name="bad_hour" size="2" maxlength="2"> 小时 <input type="text" name="bad_minute" size="2" maxlength="2"> 分钟做“闲事”。</li>
+
+					<li><select name="fitbody"><option value="yes">有</option><option value="no">没有</option></select>锻炼身体。</li>
+
+					<li>花了<input type="text" name="dailycost" size="4" maxlength="4">元吃饭。</li>
+
+					<li>对了，今天是周日，这周总共消费<input type="text" name="weekcost" size="4" maxlength="4">元！</li>
+				</ul>
+				口令：<input type="password" value="password"><br/>
+				<input type="submit" value="真是充实的一天！">
+			</form>
 		</div>
 	</body>
 </html>
