@@ -13,4 +13,19 @@ function choose_item(event) {
 		//item.setAttribute("class", "button");
 		bglist.appendChild(item);
 	}
+	
+	var xmlhttp;		
+	if(window.XMLHttpRequest)
+		xmlhttp = new XMLHttpRequest();
+	else
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+		{
+			document.getElementById("hint").innerHTML = xmlhttp.responseText;
+		}
+	}
+	xmlhttp.open("GET","handle.php?bgid="+item.getAttribute("data-bgid"),true);
+	xmlhttp.send();
 }

@@ -13,29 +13,28 @@
 				<h1 class="title">全部桌游</h1>
 				<div class="buttons" id="bglist">
 					<?php
-					if (($handle = fopen("boardgame.csv", "r")) !== FALSE) {
-						while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-							if($data[2] == "no")
-								echo "<a class=\"button\" data-chosen=\"no\">$data[1]</a>";
+					$bglist = "";
+					$mylist = "";
+					if (($bg = fopen("boardgame.csv", "r")) !== FALSE) {
+						while (($line = fgetcsv($bg, 1000, ",")) !== FALSE) {
+							if($line[2] == "no")
+								$bglist = $bglist . "<a class=\"button\" data-bgid=\"$line[0]\" data-chosen=\"no\">$line[1]</a>";
+							else if($line[2] == "yes")
+								$mylist = $mylist . "<a class=\"button\" data-bgid=\"$line[0]\" data-chosen=\"yes\">$line[1]</a>";
 						}
 					}
-					?>
-				</div>
+					echo $bglist;
+					echo "</div>
 			</div>
-			<div class="column">
-				<h1 class="title">您的桌游</h1>
-				<div class="buttons" id="mylist">
-					<?php
-					if (($handle = fopen("boardgame.csv", "r")) !== FALSE) {
-						while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-							if($data[2] == "yes")
-								echo "<a class=\"button\" data-chosen=\"yes\">$data[1]</a>";
-						}
-					}
+			<div class=\"column\">
+				<h1 class=\"title\">您的桌游</h1>
+				<div class=\"buttons\" id=\"mylist\">";
+					echo $mylist;
 					?>
 				</div>
 			</div>
 		</div>
+		<div id="hint">Please choose your boardgame.</div>
 		<script type="text/javascript" src="event_register.js"></script>
 	</body>
 </html>
