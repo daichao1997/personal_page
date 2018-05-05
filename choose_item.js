@@ -10,7 +10,7 @@ function choose_item(event) {
 	}
 	else if(chosen == "yes"){
 		item.setAttribute("data-chosen", "no");
-		item.setAttribute("class", "button");
+		//item.setAttribute("class", "button");
 		bglist.appendChild(item);
 	}
 }

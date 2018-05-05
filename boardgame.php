@@ -12,34 +12,30 @@
 			<div class="column">
 				<h1 class="title">全部桌游</h1>
 				<div class="buttons" id="bglist">
-					<a class="button" data-bgid="0001" data-chosen="no">三国杀</a>
-					<a class="button" data-bgid="0001" data-chosen="no">狼人杀</a>
-					<a class="button" data-bgid="0001" data-chosen="no">大富翁</a>
-					<a class="button" data-bgid="0001" data-chosen="no">达芬奇密码</a>
-					<a class="button" data-bgid="0001" data-chosen="no">富饶之城</a>
+					<?php
+					if (($handle = fopen("boardgame.csv", "r")) !== FALSE) {
+						while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+							if($data[2] == "no")
+								echo "<a class=\"button\" data-chosen=\"no\">$data[1]</a>";
+						}
+					}
+					?>
 				</div>
 			</div>
 			<div class="column">
 				<h1 class="title">您的桌游</h1>
 				<div class="buttons" id="mylist">
-				
+					<?php
+					if (($handle = fopen("boardgame.csv", "r")) !== FALSE) {
+						while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+							if($data[2] == "yes")
+								echo "<a class=\"button\" data-chosen=\"yes\">$data[1]</a>";
+						}
+					}
+					?>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="event_register.js"></script>
-		<?php
-		$row = 1;
-		if (($handle = fopen("boardgame.csv", "r")) !== FALSE) {
-			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-				$num = count($data);
-				echo "<p> $num fields in line $row: <br /></p>\n";
-				$row++;
-				for ($c=0; $c < $num; $c++) {
-					echo $data[$c] . "<br />\n";
-				}
-			}
-			fclose($handle);
-		}
-		?>
 	</body>
 </html>
