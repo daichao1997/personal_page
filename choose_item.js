@@ -1,4 +1,12 @@
+function getQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null) return unescape(r[2]); return null;
+}
+
 function choose_item(event) {
+	var userid = getQueryString("userid");
+	
 	var bglist = document.getElementById("bglist");
 	var mylist = document.getElementById("mylist");
 	var item = event.currentTarget;
@@ -26,6 +34,7 @@ function choose_item(event) {
 			document.getElementById("hint").innerHTML = xmlhttp.responseText;
 		}
 	}
-	xmlhttp.open("GET","handle.php?bgid="+item.getAttribute("data-bgid"),true);
+	xmlhttp.open("GET","handle.php?userid="+userid+"&bgid="+item.getAttribute("data-bgid"),true);
 	xmlhttp.send();
+	
 }

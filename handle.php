@@ -1,4 +1,5 @@
 <?php
 $bgid = $_GET["bgid"];
-echo "Well done! You have clicked $bgid.";
+$userid = $_GET["userid"];
+echo "Well done, $userid! You have clicked $bgid.";
 ?>

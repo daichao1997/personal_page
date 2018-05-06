@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Hello Bulma!</title>
+		<title>芭乐桌游管理页面</title>
 		<link rel="stylesheet" href="bulma.css">
 		<script type="text/javascript" src="choose_item.js"></script>
 	</head>
