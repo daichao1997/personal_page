@@ -35,6 +35,10 @@ function choose_item(event) {
 		{
 			document.getElementById("hint").innerHTML = xmlhttp.responseText;
 		}
+		else
+		{
+			document.getElementById("hint").innerHTML = "FAIL!";
+		}
 	}
 	xmlhttp.open("GET","handle.php?userid="+userid+"&bgid="+bgid+"&op="+chosen,true);
 	xmlhttp.send();
