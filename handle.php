@@ -1,4 +1,6 @@
 <?php
+// When user clicks a button, an event will be triggered, and we will receive a GET request.
+// Handle this request by writing to our database correctly.
 $dbhost = "localhost";
 $dbuser = "mysql";
 $dbpasswd = "mysql";
@@ -6,16 +8,18 @@ $dbname = "boardgameRecommendation";
 
 $db = mysqli_connect($dbhost, $dbuser, $dbpasswd, $dbname);
 
+// bgid: boardgame ID of that clicked button
 $bgid = mysqli_real_escape_string($db, $_GET["bgid"]);
+
+// userid
 $userid = mysqli_real_escape_string($db, $_GET["userid"]);
+
+// ="no" if $userid wants to insert $bgid, ="yes" if delete
 $op = mysqli_real_escape_string($db, $_GET["op"]);
 
-$query = "SELECT game FROM barmanager WHERE userid=$userid AND game=$bgid";
-$query_result = mysqli_query($db, $query);
+// Write to our database.
+// Enter your code here.
 
-$display_string = "";
-
-//if($ = mysqli_fetch_array($query_result))
-
+// Your code ends here.
 echo "Well done, $userid! You have clicked $bgid.";
 ?>
