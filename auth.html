@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>芭乐桌游管理平台登录入口</title>
+		<link rel="stylesheet" href="../../static/boardgame/bulma.css">
+		<script type="text/javascript" src="../../static/boardgame/jquery-3.3.1.js"></script>
+		<style type="text/css">
+			#a {
+				position: fixed;
+				top: 30%;
+				bottom: 70%;
+				left: 0;
+				right: 0;
+				margin: auto;
+				width: 80%;
+				height: 20%;
+				display: flex;
+				justify-content: center; 
+			}
+			#b {
+				position: fixed;
+				top: 50%;
+				bottom: 50%;
+				left: 0;
+				right: 0;
+				margin: auto;
+				width: 80%;
+				height: 20%;
+				display: flex;
+				justify-content: center; 
+			}
+			#c {
+				position: fixed;
+				top: 70%;
+				bottom: 30%;
+				left: 0;
+				right: 0;
+				margin: auto;
+				width: 80%;
+				height: 20%;
+				display: flex;
+				justify-content: center; 
+			}
+		</style>
+		
+	</head>
+	<body>
+			<div class="field" id="a">
+				<label class="label is-size-4">请输入音箱播放的4位验证码</label>
+			</div>
+			<div class="field has-addons" id="b">
+				<p class="control">
+					<input class="input is-large" id="n1" type="text" size="1" maxlength="1" style="text-align:center;"/>
+				</p>
+				<p class="control">
+					<input class="input is-large" id="n2" type="text" size="1" maxlength="1" style="text-align:center;"/>
+				</p>
+				<p class="control">
+					<input class="input is-large" id="n3" type="text" size="1" maxlength="1" style="text-align:center;"/>
+				</p>
+				<p class="control">
+					<input class="input is-large" id="n4" type="text" size="1" maxlength="1" style="text-align:center;"/>
+				</p>
+			</div>
+			<div class="control" id="c">
+					<button class="button is-link is-large">Submit</button>
+			</div>
+			<div id="hint"></div>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#n1").focus();
+				$(".input").keydown(function (evt) {
+					if (evt.which < 48 || evt.which > 57) {
+						evt.preventDefault();
+					}
+				});
+				$(".input").keyup(function () {
+					if (this.value.length == this.maxLength) {
+						var $next = $(this).closest('p').next().find('.input');
+						if ($next.length)
+							$next.focus();
+						else
+							$(this).blur();
+					}
+				});
+				$(".input").focus(function() {
+					$(this).val('');
+				});
+				$(".button").click(function() {
+					var code = $("#n1").val() + $("#n2").val() + $("#n3").val() + $("#n4").val();
+					if(code.length != 4)
+						return;
+					$("#hint").load('http://v.internetapi.cn/boardgame/auth.php', {"code":code});
+				});
+			});
+		</script>
+	</body>
+</html>
